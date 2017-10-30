@@ -15,7 +15,7 @@ CHANGES
 		
 			ADDED CODE: 
 			
-			    /**
+				/**
 				 * Check new user already exists in DB or not 
 				 *
 				 * @input: new_member input fields' value 
@@ -36,10 +36,16 @@ CHANGES
 						$data = explode("=", $value);
 						$fields[$data[0]] = $data[1];
 					}
-					
+				
 					if ($fields["f_title"] == "Other") $fields["f_title"] = $fields['f_other_title']; 
 					unset($fields['f_other_title']); 
 
+					if ($fields["f_record_type"] == "organisation") {
+						unset($fields['f_title']);
+						unset($fields['f_other_title']);
+						unset($fields['f_last_name']);
+					}
+					
 					$key_assists = array(
 						'f_record_type' => 'p.record_type', 
 						'f_title' => 'p.salutation', 
