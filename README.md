@@ -11,7 +11,15 @@ CHANGES
  
 	IN FILES: 
 	
-		C:\toucantech.dev\network-site\addons\default\modules\network_settings\controllers\members.php
+		\network-site\addons\default\modules\network_settings\language\english\network_settings_lang.php
+		
+			ADDED CODE: 
+			
+			//General Setups
+			$lang['users:create:already_exists'] = 'A user with these details already exists in the database. Click CREATE to proceed.';
+		
+		
+		\network-site\addons\default\modules\network_settings\controllers\members.php
 		
 			ADDED CODE: 
 			
@@ -74,12 +82,15 @@ CHANGES
 					}
 				}	
 
-		C:\toucantech.dev\network-site\addons\default\modules\network_settings\views\members\index.php
+		\network-site\addons\default\modules\network_settings\views\members\index.php
 		
 			CHANGED CODE:
 			
 				Added new css class to fields: new_member_field
 				
+				<div class="new_member alert alert-warning" style="width: 90%; margin-left: auto; margin-right: auto; display: none;">
+					<?=lang('users:create:already_exists')?>
+				</div>
 				<fieldset>
 					<ul id="addNewMemberFields">
 						<li>
@@ -133,7 +144,7 @@ CHANGES
 				</fieldset>		
 
 
-		C:\toucantech.dev\network-site\addons\default\modules\network_settings\js\members_administration.js
+		\network-site\addons\default\modules\network_settings\js\members_administration.js
 		
 			CHANGED/ADDED CODE: 
 			
@@ -194,7 +205,7 @@ CHANGES
 					});	
 
 
-		C:\toucantech.dev\network-site\addons\default\modules\bbusers\models\profile_m.php
+		\network-site\addons\default\modules\bbusers\models\profile_m.php
 		
 			CHANGED CODE:
 			
