@@ -1,17 +1,18 @@
+FOR PRIVACY AND CODE PROTECTING REASONS THIS IS A SIMPLIFIED VERSION OF CHANGES AND NEW FEATURES
+
 TASK DATE: 30.10.2017 - Finished: 30.10.2017
+
+TASK LEVEL: (EASY)  
 
 TASK SHORT DESCRIPTION: 1134 (duplicate prompt when creating a record)
 
 GITHUB REPOSITORY CODE: fetaure/task-1134-duplicate-prompt-when-creating-a-record
 
-ORIGINAL WORK: https://github.com/BusinessBecause/network-site/tree/hotfix/task-1134-duplicate-prompt-when-creating-a-record
-
-
 CHANGES
  
 	IN FILES: 
 	
-		\network-site\addons\default\modules\network_settings\language\english\network_settings_lang.php
+		network_settings_lang.php
 		
 			ADDED CODE: 
 			
@@ -19,7 +20,9 @@ CHANGES
 			$lang['users:create:already_exists'] = 'A user with these details already exists in the database. Click CREATE to proceed.';
 		
 		
-		\network-site\addons\default\modules\network_settings\controllers\members.php
+		
+		
+		members.php
 		
 			ADDED CODE: 
 			
@@ -45,23 +48,8 @@ CHANGES
 						$fields[$data[0]] = $data[1];
 					}
 				
-					if ($fields["f_title"] == "Other") $fields["f_title"] = $fields['f_other_title']; 
-					unset($fields['f_other_title']); 
-
-					if ($fields["f_record_type"] == "organisation") {
-						unset($fields['f_title']);
-						unset($fields['f_other_title']);
-						unset($fields['f_last_name']);
-					}
+					..........
 					
-					$key_assists = array(
-						'f_record_type' => 'p.record_type', 
-						'f_title' => 'p.salutation', 
-						'f_first_name' => 'p.first_name', 
-						'f_last_name' => 'p.last_name', 
-						//'f_newmember_group' = 'ppt.row_id', 
-					);
-					$where = 'u.id > 0'; $exist = true;
 					while ($exist and list($key, $value) = each($fields)) {
 						if ($value != '') {
 							$where .= " AND " . $key_assists[$key] . " = '" . $value . "'";
@@ -82,7 +70,10 @@ CHANGES
 					}
 				}	
 
-		\network-site\addons\default\modules\network_settings\views\members\index.php
+				
+				
+				
+		index.php
 		
 			CHANGED CODE:
 			
@@ -143,8 +134,12 @@ CHANGES
 					</ul>
 				</fieldset>		
 
+				
+				
+				
+				
 
-		\network-site\addons\default\modules\network_settings\js\members_administration.js
+	members_administration.js
 		
 			CHANGED/ADDED CODE: 
 			
@@ -183,29 +178,16 @@ CHANGES
 							.find('.new_member_field, #f_newmember_group').on('change keyup', function() {
 								var fields = $('.new_member_field').serialize();//+ "&f_newmember_group=" + $('#f_newmember_group').val();
 								$.ajax({
-									type: "POST",
-									url: BASE_URI + 'admin-portal/members/user_already_exists',
-									data: {'fields': fields},
-									cache: false,
-									success:function (response){
-										if (response && response != already_exists) {
-											$('.new_member.alert.alert-warning').show(200)
-											already_exists = response;
-										} 
-										else if (!response && response != already_exists) {
-											$('.new_member.alert.alert-warning').hide(200);
-											already_exists = response;
-										}
-									},
-									error:function (response) {
-										console.log(response);
-									}
+									.............
 								})
 							});
 					});	
 
 
-		\network-site\addons\default\modules\bbusers\models\profile_m.php
+					
+					
+					
+		profile_m.php
 		
 			CHANGED CODE:
 			
